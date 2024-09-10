@@ -39,18 +39,34 @@ function Navbar() {
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
 
+  // useEffect(() => {(async () => {
+  //     setLoading(true)
+  //     try {
+  //       const res = await apiConnector("GET", categories.CATEGORIES_API)
+  //       setSubLinks(res.data.data)
+  //     } catch (error) {
+  //       console.log("Could not fetch Categories.", error)
+  //     }
+  //     setLoading(false)
+  //   })()
+  // }, [])
+
   useEffect(() => {
-    ;(async () => {
-      setLoading(true)
+    const fetchCategories = async () => {
+      setLoading(true);
       try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
+        setSubLinks(res.data.data);
       } catch (error) {
-        console.log("Could not fetch Categories.", error)
+        console.error("Could not fetch Categories.", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false)
-    })()
-  }, [])
+    };
+  
+    fetchCategories();
+  }, []);
+  
 
   // console.log("sub links", subLinks)
 
