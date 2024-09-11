@@ -7,7 +7,7 @@
 // 	videoUrl: { type: String },
 // });
 
-// module.exports = mongoose.model("SubSection", SubSectionSchema);
+// module.exports = mongoose.model("Subsection", SubSectionSchema);
 
 const mongoose = require("mongoose");
 
